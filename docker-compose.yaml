@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  rurality:
+    build: .
+    image: moriorgames/lara-chain
+    restart: unless-stopped
+    container_name: lara-chain
+    env_file:
+      - .env
+    volumes:
+      - "./:/app"
+    tty: true
