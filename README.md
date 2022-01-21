@@ -11,6 +11,8 @@ $ docker-compose build
 $ docker-compose up -d
 # Enter the main docker container based on PHP 8 alpine
 $ make shell
+# Seed the database
+$ php arstian db:seed
 ```
 
 # Considerations to build this project
