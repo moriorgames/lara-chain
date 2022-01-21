@@ -17,4 +17,5 @@ $ make shell
 
 - Created a Laravel project with composer
 - I've removed manually unnecessary DEV dependencies by adding a .phar file with the specefici PHPunit tool I want to use for development
+- I've removed manually some files I consider not necessary for this project because I want to do all the stuff via console with testing (webpack, js, css, etc.).
 
