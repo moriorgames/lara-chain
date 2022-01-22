@@ -5,7 +5,8 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "ext-pdo": "*",
+        "php": "^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
@@ -53,6 +54,7 @@
     "prefer-stable": true,
     "require-dev": {
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/php-code-coverage": "^9.2"
+        "phpunit/php-code-coverage": "^9.2",
+        "symfony/var-dumper": "^5.4"
     }
 }

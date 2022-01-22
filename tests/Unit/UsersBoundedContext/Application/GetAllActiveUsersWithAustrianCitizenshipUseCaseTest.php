@@ -9,10 +9,12 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
+use Tests\Traits\UsersBoundedContext\CreateUserTrait;
 
 class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
 {
-    use ProphecyTrait;
+    use ProphecyTrait,
+        CreateUserTrait;
 
     private UserRepository|ObjectProphecy $repository;
     private GetAllActiveUsersWithAustrianCitizenshipUseCase $sut;
@@ -27,7 +29,7 @@ class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
 
     public function test_is_able_to_return_all_active_users_with_austrian_citizenship_only_one(): void
     {
-        $userRepositoryReturn = [new User];
+        $userRepositoryReturn = [$this->createValidUser()];
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->findAllActiveWithAustrianCitizenship()
             ->willReturn($userRepositoryReturn);
@@ -40,7 +42,7 @@ class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
 
     public function test_is_able_to_return_all_active_users_with_austrian_citizenship_more_than_one(): void
     {
-        $userRepositoryReturn = [new User, new User, new User];
+        $userRepositoryReturn = [$this->createValidUser(), $this->createValidUser(), $this->createValidUser()];
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->findAllActiveWithAustrianCitizenship()
             ->willReturn($userRepositoryReturn);

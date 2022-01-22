@@ -13,6 +13,10 @@ $ docker-compose up -d
 $ make shell
 # Seed the database
 $ php arstian db:seed
+# Launch tests
+$ make test
+# Launch test coverage
+$ make cover
 ```
 
 # Considerations to build this project

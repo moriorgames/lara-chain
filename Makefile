@@ -15,7 +15,15 @@ help:
 	@echo
 	@echo "commands:"
 	@echo "    shell            - create docker container and enter the container"
+	@echo "    test             - run tests"
+	@echo "    cover            - run tests and creates code coverage report"
 	@echo
 
 shell:
 	@docker exec -ti $(CONTAINER) sh
+
+test:
+	@docker exec $(CONTAINER) php phars/phpunit.phar --stop-on-failure
+
+cover:
+	@docker exec $(CONTAINER) php phars/phpunit.phar --coverage-html=coverage
