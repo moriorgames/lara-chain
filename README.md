@@ -21,3 +21,13 @@ $ php arstian db:seed
 - I've removed manually unnecessary DEV dependencies by adding a .phar file with the specefici PHPunit tool I want to use for development
 - I've removed manually some files I consider not necessary for this project because I want to do all the stuff via console with testing (webpack, js, css, etc.).
 
+# Implementations details
+
+On the Use Case get all active users with austrian citizenship there's a lot of decisions to take here.
+- I've decided to create a Bounded Context User to make explicit this source code belongs to the feature I want to implement and isolate from the Framework stuff.
+- I've tried to implement only what requirements ask. Following strict TDD flow. I do not know how business will evolve, so I will stick only for what I understand from requirements.
+- This is the reason why I created a specific function on the Repository with no criteria, of course, if Business needs more functionality, sure it will, I will need to do a refactor of this part.
+- Same with the Use Case. The Use Case is very specific, but until, as a developer, I'm not able to know more about Business I prefer to not take design decisions.
+- Right or not, this is my way of doing, never assume requirements :) 
+
+
