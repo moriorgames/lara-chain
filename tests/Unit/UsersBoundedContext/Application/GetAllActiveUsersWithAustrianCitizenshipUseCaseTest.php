@@ -3,7 +3,6 @@
 namespace Tests\Unit\UsersBoundedContext\Application;
 
 use App\UsersBoundedContext\Application\GetAllActiveUsersWithAustrianCitizenshipUseCase;
-use App\UsersBoundedContext\Domain\User;
 use App\UsersBoundedContext\Domain\UserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -29,7 +28,7 @@ class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
 
     public function test_is_able_to_return_all_active_users_with_austrian_citizenship_only_one(): void
     {
-        $userRepositoryReturn = [$this->createValidUser()];
+        $userRepositoryReturn = [$this->createUserWithUserDetails()];
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->findAllActiveWithAustrianCitizenship()
             ->willReturn($userRepositoryReturn);
@@ -42,7 +41,7 @@ class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
 
     public function test_is_able_to_return_all_active_users_with_austrian_citizenship_more_than_one(): void
     {
-        $userRepositoryReturn = [$this->createValidUser(), $this->createValidUser(), $this->createValidUser()];
+        $userRepositoryReturn = [$this->createUserWithUserDetails(), $this->createUserWithUserDetails(), $this->createUserWithUserDetails()];
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->findAllActiveWithAustrianCitizenship()
             ->willReturn($userRepositoryReturn);

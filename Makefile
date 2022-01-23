@@ -2,7 +2,7 @@ VERSION = $(shell git describe --tags --always --dirty)
 BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 CONTAINER = lara-chain
 
-.PHONY: help shell
+.PHONY: help shell seed test cover
 
 all: help
 
@@ -15,12 +15,16 @@ help:
 	@echo
 	@echo "commands:"
 	@echo "    shell            - create docker container and enter the container"
+	@echo "    seed             - seed the database"
 	@echo "    test             - run tests"
 	@echo "    cover            - run tests and creates code coverage report"
 	@echo
 
 shell:
 	@docker exec -ti $(CONTAINER) sh
+
+seed:
+	@docker exec -ti $(CONTAINER) php artisan db:seed
 
 test:
 	@docker exec $(CONTAINER) php phars/phpunit.phar --stop-on-failure

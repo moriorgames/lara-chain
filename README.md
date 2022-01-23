@@ -9,14 +9,20 @@ You only need docker to run this program. Make is a tool to help and simplify so
 $ docker-compose build
 # Get all containers up and running
 $ docker-compose up -d
-# Enter the main docker container based on PHP 8
-$ make shell
 # Seed the database
-$ php arstian db:seed
+$ make seed
 # Launch tests
 $ make test
 # Launch test coverage
 $ make cover
+# If you want to enter the main docker container based on PHP 8
+$ make shell
+# From inside the container, Seed the database
+$ php artisan db:seed
+# From inside the container, launch tests
+$ php phars/phpunit.phar --stop-on-failure
+# From inside the container, launch code coverage
+$ php phars/phpunit.phar --stop-on-failure --coverage-html=coverage
 ```
 
 # Considerations to build this project

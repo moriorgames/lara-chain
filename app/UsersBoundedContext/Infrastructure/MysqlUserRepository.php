@@ -17,6 +17,23 @@ class MysqlUserRepository implements UserRepository
         $this->pdo = (new MysqlConnection)->getPdo();
     }
 
+    /**
+     * @param int $id
+     * @return User
+     * @todo this implementation is fake and must be resolved in next changes
+     * @throw UserNotFoundException
+     */
+    public function find(int $id): User
+    {
+        return new User(
+            1,
+            'email',
+            true,
+            new DateTime(),
+            new DateTime()
+        );
+    }
+
     public function findAllActiveWithAustrianCitizenship(): array
     {
         $params = [];
@@ -44,5 +61,13 @@ SQL;
         return $result;
 
         return [];
+    }
+
+    /**
+     * @param User $user
+     * @todo this implementation is fake and must be resolved in next changes
+     */
+    public function save(User $user): void
+    {
     }
 }
