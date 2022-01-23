@@ -44,3 +44,14 @@ On the Use Case get all active users with austrian citizenship there's a lot of 
 - I'm not happy with the Autoincremental ID on the entities, because we are coupling our models/entities with an implementation detail as Autoincrements of Mysql.
 - I have a feeling that User model is an aggregate root, but at this point I don't have enough information to take decisions on that I guess it will emerge on next commits.
 
+
+On the Edit User details I have a lack of knowledge about what's correct from business perspective.
+- What happens when I try to edit user details but the citizenship_country_id is not a valid country because does not exist on database? What's the behavior expected?
+- I have a feeling that User Details is not an entity, is a Value Object, but... the field citizenship_country_id has something, I guess this information is not directly related with User Details, but I have no enough information.
+- Is it allowed to edit the ID property of User Details? Why? How? May I do something to avoid Mysql Collisions?
+- I'm not happy enough with the implementation of the MysqlUserRepository, I think I'm reinventing the wheel, but I do not want to put Eloquent in place because It will polute the models.
+- I think it's a big mistake get entities from the database and `set` the ID property passing through the constructor. In my opinion a constructor for an entity must be called only and only one time in the lifecycle of an entity, so, when its created.
+- I'm not happy enough with the mapping between Mysql queries and the objetcs and the opposite way, at some point it will emerge a DataMapper
+- This is the reason because I like Doctrine as an ORM because it helps me to do this stuff. Maybe I can use a Reflection class but I do not want to go this way for this exersise, too complicated :)
+- The solution is far to be perfect but, at least I think the behaviour is what business needs at this point.
+

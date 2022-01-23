@@ -33,4 +33,19 @@ class User
     {
         return ($this->userDetails !== null);
     }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getUserDetails(): ?UserDetails
+    {
+        return $this->userDetails;
+    }
+
+    public function setUserDetails(UserDetails $userDetails): void
+    {
+        $this->userDetails = $userDetails;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\UsersBoundedContext\Application;
 
+use App\UsersBoundedContext\Domain\UserDetails;
 use App\UsersBoundedContext\Domain\UserRepository;
 
 class EditUserDetailsIfUserDetailsExists
@@ -21,6 +22,15 @@ class EditUserDetailsIfUserDetailsExists
             return new EditUserDetailsIfUserDetailsExistsResponse(false);
         }
 
+        $userDetails = new UserDetails(
+            $user->getUserDetails()->getId(),
+            $user->getId(),
+            $request->getUserDetailCitizenshipCountryId(),
+            $request->getUserDetailFirstName(),
+            $request->getUserDetailLastName(),
+            $request->getUserDetailPhoneNumber()
+        );
+        $user->setUserDetails($userDetails);
         $this->repository->save($user);
 
         return new EditUserDetailsIfUserDetailsExistsResponse(true);

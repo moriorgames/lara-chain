@@ -36,8 +36,7 @@ class EditUserDetailsIfUserDetailsExistsTest extends TestCase
 
         $this->repository->find(Argument::type('int'))
             ->willThrow(new UserNotFoundException);
-        $userId = 123;
-        $request = new EditUserDetailsIfUserDetailsExistsRequest($userId);
+        $request = $this->createEditUserDetailsIfUserDetailsExistsRequest();
         $this->sut->__invoke($request);
     }
 
@@ -48,8 +47,7 @@ class EditUserDetailsIfUserDetailsExistsTest extends TestCase
             ->willReturn($this->createUserWithoutUserDetails());
         /** @var MethodProphecy $repositorySaveExpectation */
         $repositorySaveExpectation = $this->repository->save(Argument::type(User::class));
-        $userId = 123;
-        $request = new EditUserDetailsIfUserDetailsExistsRequest($userId);
+        $request = $this->createEditUserDetailsIfUserDetailsExistsRequest();
         $result = $this->sut->__invoke($request);
 
         $repositoryExpectation->shouldBeCalledOnce();
@@ -64,12 +62,22 @@ class EditUserDetailsIfUserDetailsExistsTest extends TestCase
             ->willReturn($this->createUserWithUserDetails());
         /** @var MethodProphecy $repositorySaveExpectation */
         $repositorySaveExpectation = $this->repository->save(Argument::type(User::class));
-        $userId = 123;
-        $request = new EditUserDetailsIfUserDetailsExistsRequest($userId);
+        $request = $this->createEditUserDetailsIfUserDetailsExistsRequest();
         $result = $this->sut->__invoke($request);
 
         $repositoryExpectation->shouldBeCalledOnce();
         $repositorySaveExpectation->shouldBeCalledOnce();
         $this->assertTrue($result->hasBeenEdited());
+    }
+
+    private function createEditUserDetailsIfUserDetailsExistsRequest(): EditUserDetailsIfUserDetailsExistsRequest
+    {
+        return new EditUserDetailsIfUserDetailsExistsRequest(
+            123,
+            3,
+            'fake first name',
+            'fake last name',
+            'fake phone number'
+        );
     }
 }
