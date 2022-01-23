@@ -33,7 +33,7 @@ $ php phars/phpunit.phar --stop-on-failure --coverage-html=coverage
 
 # Implementations details
 
-On the Use Case get all active users with austrian citizenship there's a lot of decisions to take here.
+On the feature Get All Active users with austrian citizenship there's a lot of decisions to take here.
 - I've decided to create a Bounded Context User to make explicit this source code belongs to the feature I want to implement and isolate from the Framework stuff.
 - I've tried to implement only what requirements ask. Following strict TDD flow. I do not know how business will evolve, so I will stick only for what I understand from requirements.
 - This is the reason why I created a specific function on the Repository with no criteria, of course, if Business needs more functionality, sure it will, I will need to do a refactor of this part.
@@ -45,7 +45,7 @@ On the Use Case get all active users with austrian citizenship there's a lot of 
 - I have a feeling that User model is an aggregate root, but at this point I don't have enough information to take decisions on that I guess it will emerge on next commits.
 
 
-On the Edit User details I have a lack of knowledge about what's correct from business perspective.
+On the feature Edit User details I have a lack of knowledge about what's correct from business perspective.
 - What happens when I try to edit user details but the citizenship_country_id is not a valid country because does not exist on database? What's the behavior expected?
 - I have a feeling that User Details is not an entity, is a Value Object, but... the field citizenship_country_id has something, I guess this information is not directly related with User Details, but I have no enough information.
 - Is it allowed to edit the ID property of User Details? Why? How? May I do something to avoid Mysql Collisions?

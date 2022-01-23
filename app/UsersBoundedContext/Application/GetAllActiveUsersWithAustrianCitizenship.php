@@ -4,7 +4,7 @@ namespace App\UsersBoundedContext\Application;
 
 use App\UsersBoundedContext\Domain\UserRepository;
 
-class GetAllActiveUsersWithAustrianCitizenshipUseCase
+class GetAllActiveUsersWithAustrianCitizenship
 {
     private UserRepository $repository;
 

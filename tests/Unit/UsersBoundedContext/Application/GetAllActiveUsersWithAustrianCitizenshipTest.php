@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\UsersBoundedContext\Application;
 
-use App\UsersBoundedContext\Application\GetAllActiveUsersWithAustrianCitizenshipUseCase;
+use App\UsersBoundedContext\Application\GetAllActiveUsersWithAustrianCitizenship;
 use App\UsersBoundedContext\Domain\UserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -10,20 +10,20 @@ use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
 use Tests\Traits\UsersBoundedContext\CreateUserTrait;
 
-class GetAllActiveUsersWithAustrianCitizenshipUseCaseTest extends TestCase
+class GetAllActiveUsersWithAustrianCitizenshipTest extends TestCase
 {
     use ProphecyTrait,
         CreateUserTrait;
 
     private UserRepository|ObjectProphecy $repository;
-    private GetAllActiveUsersWithAustrianCitizenshipUseCase $sut;
+    private GetAllActiveUsersWithAustrianCitizenship $sut;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->repository = $this->prophesize(UserRepository::class);
-        $this->sut = new GetAllActiveUsersWithAustrianCitizenshipUseCase($this->repository->reveal());
+        $this->sut = new GetAllActiveUsersWithAustrianCitizenship($this->repository->reveal());
     }
 
     public function test_is_able_to_return_all_active_users_with_austrian_citizenship_only_one(): void
