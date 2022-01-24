@@ -115,4 +115,12 @@ SQL;
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
     }
+
+    /**
+     * @param User $user
+     * @todo this method must be implemented later
+     */
+    public function delete(User $user): void
+    {
+    }
 }
