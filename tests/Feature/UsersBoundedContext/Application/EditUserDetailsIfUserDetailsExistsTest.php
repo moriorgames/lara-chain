@@ -13,6 +13,7 @@ class EditUserDetailsIfUserDetailsExistsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
         EditUserDetailsIfUserDetailsExistsFixtureTestBuilder::build();
     }
 
@@ -65,7 +66,7 @@ class EditUserDetailsIfUserDetailsExistsFixtureTestBuilder
         $sql = <<< SQL
 INSERT INTO `users` (`id`, `email`, `active`, `created_at`, `updated_at`)
 VALUES
-	(:user_id, 'alex999@tempmail.com', 1, '2022-01-01 16:08:59', '2022-01-01 16:08:59');
+	(:user_id, 'alex9997@tempmail.com', 1, '2022-01-01 16:08:59', '2022-01-01 16:08:59');
 SQL;
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -74,7 +75,7 @@ SQL;
         $sql = <<< SQL
 INSERT INTO `user_details` (`id`, `user_id`, `citizenship_country_id`, `first_name`, `last_name`, `phone_number`)
 VALUES
-	(:user_details_id, :user_id, 1, 'Morior', 'Games', '000666555444');
+	(:user_details_id, :user_id, 1, 'Morior9992', 'Games9992', '9992666555444');
 SQL;
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);

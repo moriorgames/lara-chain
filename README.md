@@ -55,3 +55,9 @@ On the feature Edit User details I have a lack of knowledge about what's correct
 - This is the reason because I like Doctrine as an ORM because it helps me to do this stuff. Maybe I can use a Reflection class but I do not want to go this way for this exersise, too complicated :)
 - The solution is far to be perfect but, at least I think the behaviour is what business needs at this point.
 
+On the feature Delete user if has user details I have the next Thoughts.
+- I'm ok with the implementation. I'm fine because I've spent less time developing because I'm starting to reuse some parts that has been developed, this is a good sign.
+- The implementation on the MysqlUserRepository does not need, at this point, any Data Mapper and all the features of this part are finished, nice :)
+- I've decided to throw an exception on the repository where `find` a User and the entity is not found. I think this is not the best way to proceed but is something we can discuss with the team.
+- 
+

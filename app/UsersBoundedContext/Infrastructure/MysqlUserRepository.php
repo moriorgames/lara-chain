@@ -122,5 +122,16 @@ SQL;
      */
     public function delete(User $user): void
     {
+        $sql = <<< SQL
+DELETE u, ud
+FROM users u
+INNER JOIN user_details ud ON ud.user_id = u.id
+WHERE u.id = :user_id;
+SQL;
+        $params = [
+            'user_id' => $user->getId(),
+        ];
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
     }
 }
