@@ -64,3 +64,11 @@ On the feature Delete user if has user details I have the next Thoughts.
 - This is the reason because I call Feature tests `Integration tests` because the purpose I like to accomplish with these tests is to check that all the dependencies are working as expected (Well integrated) and the `Happy path`.
 - I think is not a bad idea to have a `happy path test` this is a use case with the most common behaviour tested via Integration test (I used to do only one by feature).
 
+
+On the las feature implementing a repository with different sources.
+- I decided to go for a factory injected on the use case class. So I can test this locally with unit tests and I think it solves the desired problem.
+- I'm not happy at all with the CSV or the MYSQL transactions repository but I wanted to finish the test today and I'm little tired :(
+- But all the stuff seems to be working, I've launched the tests several times and I'm pretty sure all is working as expected.
+- The solution is not perfect, of course there are not perfect solucionts, but at least with all the tests in place and a high code coverage the cost of change (refactor) is low.
+
+I've enjoyed a lot by doing the exercise. Thanks for your time reading and correcting this exercise, feedback will be welcome!
