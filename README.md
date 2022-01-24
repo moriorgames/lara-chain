@@ -59,5 +59,8 @@ On the feature Delete user if has user details I have the next Thoughts.
 - I'm ok with the implementation. I'm fine because I've spent less time developing because I'm starting to reuse some parts that has been developed, this is a good sign.
 - The implementation on the MysqlUserRepository does not need, at this point, any Data Mapper and all the features of this part are finished, nice :)
 - I've decided to throw an exception on the repository where `find` a User and the entity is not found. I think this is not the best way to proceed but is something we can discuss with the team.
-- 
+- Talking about the feature tests. I use to name this tests Integration test, why? because I think is not a good practise to test business rules with the database implementation in place.
+- Validating business rules can be done perfectly by using Unit tests, and isolating the database (an implementation detail). It's fast, efficient and scalable.
+- This is the reason because I call Feature tests `Integration tests` because the purpose I like to accomplish with these tests is to check that all the dependencies are working as expected (Well integrated) and the `Happy path`.
+- I think is not a bad idea to have a `happy path test` this is a use case with the most common behaviour tested via Integration test (I used to do only one by feature).
 
