@@ -4,8 +4,11 @@ namespace Tests\Unit\TransactionsBoundedContext\Application;
 
 use App\TransactionsBoundedContext\Application\GetAllTransactions;
 use App\TransactionsBoundedContext\Application\GetAllTransactionsRequest;
+use App\TransactionsBoundedContext\Application\Services\RepositoryFactory;
+use App\TransactionsBoundedContext\Domain\RepositoryType;
 use App\TransactionsBoundedContext\Domain\TransactionRepository;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\MethodProphecy;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -14,6 +17,7 @@ class GetAllTransactionsTest extends TestCase
 {
     use ProphecyTrait;
 
+    private RepositoryFactory|ObjectProphecy $factory;
     private TransactionRepository|ObjectProphecy $repository;
     private GetAllTransactions $sut;
 
@@ -21,8 +25,9 @@ class GetAllTransactionsTest extends TestCase
     {
         parent::setUp();
 
+        $this->factory = $this->prophesize(RepositoryFactory::class);
         $this->repository = $this->prophesize(TransactionRepository::class);
-        $this->sut = new GetAllTransactions($this->repository->reveal());
+        $this->sut = new GetAllTransactions($this->factory->reveal());
     }
 
     public function test_is_able_to_return_a_json_with_transactions_data()
@@ -48,7 +53,10 @@ class GetAllTransactionsTest extends TestCase
         /** @var MethodProphecy $repositoryExpectation */
         $repositoryExpectation = $this->repository->findAll()
             ->willReturn($returnedArray);
-        $source = 'db';
+        /** @var MethodProphecy $factoryExpectation */
+        $factoryExpectation = $this->factory->create(Argument::any())
+            ->willReturn($this->repository->reveal());
+        $source = RepositoryType::DATABASE;
         $request = new GetAllTransactionsRequest($source);
 
         $result = $this->sut->__invoke($request);
@@ -73,6 +81,7 @@ class GetAllTransactionsTest extends TestCase
             ]
         ];
 
+        $factoryExpectation->shouldBeCalledOnce();
         $repositoryExpectation->shouldBeCalledOnce();
         $this->assertEquals(json_encode($expected), $result->getJson());
     }
