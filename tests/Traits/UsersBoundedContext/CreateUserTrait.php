@@ -17,7 +17,6 @@ trait CreateUserTrait
     {
         $userDetails = new UserDetails(
             456,
-            123,
             2,
             'fake first name',
             'fake last name',

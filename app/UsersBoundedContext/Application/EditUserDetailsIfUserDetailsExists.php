@@ -24,7 +24,6 @@ class EditUserDetailsIfUserDetailsExists
 
         $userDetails = new UserDetails(
             $user->getUserDetails()->getId(),
-            $user->getId(),
             $request->getUserDetailCitizenshipCountryId(),
             $request->getUserDetailFirstName(),
             $request->getUserDetailLastName(),

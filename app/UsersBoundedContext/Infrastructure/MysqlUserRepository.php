@@ -44,7 +44,6 @@ SQL;
         if (isset($data['citizenship_country_id'])) {
             $userDetails = new UserDetails(
                 $data['user_details_id'],
-                $data['user_id'],
                 $data['citizenship_country_id'],
                 $data['first_name'],
                 $data['last_name'],

@@ -5,7 +5,6 @@ namespace App\UsersBoundedContext\Domain;
 class UserDetails
 {
     private int $id;
-    private int $userId;
     private int $citizenshipCountryId;
     private string $firstName;
     private string $lastName;
@@ -13,7 +12,6 @@ class UserDetails
 
     public function __construct(
         int    $id,
-        int    $userId,
         int    $citizenshipCountryId,
         string $firstName,
         string $lastName,
@@ -21,7 +19,6 @@ class UserDetails
     )
     {
         $this->id = $id;
-        $this->userId = $userId;
         $this->citizenshipCountryId = $citizenshipCountryId;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -31,11 +28,6 @@ class UserDetails
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function getUserId(): int
-    {
-        return $this->userId;
     }
 
     public function getCitizenshipCountryId(): int
